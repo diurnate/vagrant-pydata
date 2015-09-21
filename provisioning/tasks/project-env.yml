@@ -30,6 +30,3 @@
   command: /home/vagrant/.base-env/bin/pip wheel -r /home/vagrant/.base-env/requirements.txt
   sudo_user: vagrant
 
-- name: Freeze current versions for future environments
-  shell: /home/vagrant/.base-env/bin/pip freeze > /home/vagrant/.base-env/requirements.txt
-  sudo_user: vagrant

@@ -45,7 +45,7 @@ then
 fi
 # [end of auto-screen snippet]
 
-export WORKON_HOME=/vagrant/.envs
+export WORKON_HOME=/projects/.envs
 export PROJECT_HOME=/projects/
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
