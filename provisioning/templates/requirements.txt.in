@@ -22,6 +22,11 @@ ipython[all]
 ipython-sql
 ipdb
 ipycache
+jupyter
+nbconvert
+notebook
+mixpanel
+keen
 lxml
 MySQL-python
 nose

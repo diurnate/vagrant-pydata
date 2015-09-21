@@ -6,11 +6,11 @@ else
         PRJNAME=$1
 fi
 
-PRJPATH=$(echo /vagrant/projects/$PRJNAME)
+PRJPATH=$(echo /projects/$PRJNAME)
 NOTEBOOK_PATH=$(echo $PRJPATH/notebooks)
 echo $NOTEBOOK_PATH
 if [ ! -d "$NOTEBOOK_PATH" ]; then
         mkdir -p $NOTEBOOK_PATH
 fi
 cd $NOTEBOOK_PATH
-/home/vagrant/.envs/$PRJNAME/bin/ipython notebook --no-browser --ip=0.0.0.0
+/projects/.envs/$PRJNAME/bin/ipython notebook --no-browser --ip=0.0.0.0
