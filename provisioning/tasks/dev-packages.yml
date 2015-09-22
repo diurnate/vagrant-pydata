@@ -8,6 +8,8 @@
     - libpcre3-dev
     - libreadline-gplv2-dev
     - libncursesw5-dev
+    - libncurses5-dev
+    - libffi-dev
     - libc6-dev
     - libssl-dev
     - sqlite3

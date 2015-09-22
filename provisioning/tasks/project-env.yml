@@ -4,26 +4,29 @@
     - python-pip
     - python-virtualenv
 
-- name: Create project environment
-  file: path=/home/vagrant/.envs/base state=directory
+- name: Ensure /projects folder
+  file: path=/projects state=directory owner=vagrant
+
+- name: Create ENV_HOME
+  file: path=/projects/.envs state=directory owner=vagrant
+
+- name: Create base virtualenv
+  file: path=/home/vagrant/.base-env state=directory
   sudo_user: vagrant
 
 - name: Add requirements file
-  template: src=templates/requirements.txt.in dest=/home/vagrant/.envs/base/requirements.txt owner=vagrant
+  template: src=templates/requirements.txt.in dest=/home/vagrant/.base-env/requirements.txt owner=vagrant
   sudo_user: vagrant
 
 - name: Create Virtualenv and install requirements
-  pip: requirements=/home/vagrant/.envs/base/requirements.txt virtualenv=/home/vagrant/.envs/base virtualenv_command=virtualenv extra_args='--download-cache=/home/vagrant/.egg-cache'
+  pip: requirements=/home/vagrant/.base-env/requirements.txt virtualenv=/home/vagrant/.base-env virtualenv_command=virtualenv extra_args='--download-cache=/home/vagrant/.egg-cache -U'
   sudo_user: vagrant
 
 - name: Fully upgrade pip
-  command: /home/vagrant/.envs/base/bin/pip install --upgrade pip
+  command: /home/vagrant/.base-env/bin/pip install --upgrade pip
   sudo_user: vagrant
 
 - name: Build wheels from dependencies to make future installs faster
-  command: /home/vagrant/.envs/base/bin/pip wheel -r /home/vagrant/.envs/base/requirements.txt
+  command: /home/vagrant/.base-env/bin/pip wheel -r /home/vagrant/.base-env/requirements.txt
   sudo_user: vagrant
 
-- name: Freeze current versions for future environments
-  command: /home/vagrant/.envs/base/bin/pip freeze > /home/vagrant/.envs/base/requirements.txt
-  sudo_user: vagrant
